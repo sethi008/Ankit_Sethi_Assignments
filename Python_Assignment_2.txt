@@ -1,0 +1,124 @@
+# 04/09/2025 Python Assignment 2:
+# A school wants to maintain student records using a text file.
+
+# You are required to write a Python program that performs the following file handling operations step by step:
+
+# 1) Write Operation:
+# - Create a file named students.txt.
+# - Write details of students (Name, Roll Number, Marks) into the file.
+
+# 2) Read Operation:
+# - Read the content of students.txt and display it on the screen.
+
+# 3) Rename Operation:
+# - Rename the file from students.txt to student_records.txt.
+
+# 4) Directory Operations:
+# - Create a directory called SchoolData.
+# - Move the renamed file student_records.txt into this directory.
+# - List all files present in SchoolData to confirm the file is inside.
+
+# 5) Delete Operation:
+# - Delete the file student_records.txt from inside the directory.
+
+# Finally, delete the SchoolData directory.
+
+# Do create a menu taking the user input and then perform the operation
+
+
+# Solution :==
+
+import os
+
+
+def write_operation():
+    with open("students.txt", "w") as f:
+        n = int(input("Enter number of students: "))
+        for i in range(n):
+            name = input(f"Enter name of student {i+1}: ")
+            roll = input("Enter roll number: ")
+            marks = input("Enter marks: ")
+            f.write(f"{name}, {roll}, {marks}\n")
+    print("Data written to students.txt")
+
+
+def read_operation():
+    if os.path.exists("students.txt"):
+        with open("students.txt", "r") as f:
+            content = f.read()
+            print("\nFile Content:")
+            print(content)
+    else:
+        print("students.txt does not exist!")
+
+
+def rename_operation():
+    if os.path.exists("students.txt"):
+        os.rename("students.txt", "student_records.txt")
+        print("File renamed to student_records.txt")
+    else:
+        print("students.txt not found!")
+
+
+def directory_operations():
+    dirname = "SchoolData"
+    filename = "student_records.txt"
+    if not os.path.exists(filename):
+        print("student_records not found!")
+        return
+
+    if not os.path.exists(dirname):
+        os.mkdir(dirname)
+        print("Directory SchoolData created")
+
+    os.replace(filename, os.path.join(dirname, filename))
+    print("File moved into SchoolData")
+
+    print("\nFiles inside SchoolData:")
+    print(os.listdir(dirname))
+
+
+def delete_operations():
+    dirname = "SchoolData"
+    filename = "student_records.txt"
+    filepath = os.path.join(dirname, filename)
+
+    if os.path.exists(filepath):
+        os.remove(filepath)
+        print("student_records deleted from SchoolData")
+    else:
+        print("File not found in SchoolData")
+
+    if os.path.exists(dirname):
+        os.rmdir(dirname)
+        print("SchoolData directory deleted")
+    else:
+        print("SchoolData directory not found")
+
+
+while True:
+    print("\n------ School Records Menu ------")
+    print("1. Write Student Records")
+    print("2. Read Student Records")
+    print("3. Rename File")
+    print("4. Directory Operations (Create, Move, List)")
+    print("5. Delete File and Directory")
+    print("6. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        write_operation()
+    elif choice == "2":
+        read_operation()
+    elif choice == "3":
+        rename_operation()
+    elif choice == "4":
+        directory_operations()
+    elif choice == "5":
+        delete_operations()
+    elif choice == "6":
+        print("Exiting")
+        break
+    else:
+        print("Invalid choice")
