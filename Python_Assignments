@@ -1,0 +1,11 @@
+# 04/09/2025 Python Assignment 1
+# Split text file into 2 text files containing Even and Odd Lines from the Original Text File
+
+with open("text.txt", "r") as file, open("even.txt", "w") as even, open(
+    "odd.txt", "w"
+) as odd:
+    for line_no, line in enumerate(file, start=1):
+        if line_no % 2 == 0:
+            even.write(line)
+        else:
+            odd.write(line)
