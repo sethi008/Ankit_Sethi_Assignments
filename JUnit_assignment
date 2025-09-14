@@ -1,0 +1,53 @@
+package amdocs.testcases;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
+
+import amdocs.maincode.Fact_Prime;
+
+@RunWith(JUnitPlatform.class)
+public class Fact_Prime_test {
+	@BeforeAll
+	public static void BeforeAllMethod() {
+		System.out.println("Executing Before All method");
+	}
+	
+	@AfterAll
+	public static void AfterAllMethod() {
+		System.out.println("Executing After All Method");
+	}
+	
+	@BeforeEach
+	public void BeforeEachMethod() {
+		System.out.println("Executing Before each method");
+	}
+	
+	@AfterEach
+	public void AfterEachMethod() {
+		System.out.println("Executing After each method");
+	}
+	
+	@Test
+	public void Test1() {
+		Fact_Prime obj = new Fact_Prime();
+		
+		assertTrue(obj.isPrime(5));
+		assertFalse(obj.isPrime(4));
+		
+		assertEquals(obj.fact(3), 6);
+		assertNotEquals(obj.fact(4),200);
+	}
+}
