@@ -1,0 +1,62 @@
+
+package amdocs.selenium.programs;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SeleniumAssignment {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Administrator\\Downloads\\chromedriver-win64\\chromedriver.exe");
+		
+		WebDriver driver = new ChromeDriver();
+        driver.get("https://www.amazon.in/");
+		
+		driver.manage().window().maximize();
+		Thread.sleep(6000);
+        driver.findElement(By.className("a-button-text")).click();
+        Thread.sleep(6000);
+        driver.findElement(By.id("twotabsearchtextbox")).sendKeys("pen drive");
+        Thread.sleep(6000);
+        driver.findElement(By.id("nav-search-submit-button")).click();
+        Thread.sleep(6000);
+        driver.findElement(By.linkText("16 GB")).click();
+        System.out.println("16 GB Checkbox selected");
+        Thread.sleep(5000);
+        driver.findElement(By.partialLinkText("SanDisk Cruzer Blade")).click();
+        Thread.sleep(5000);
+        driver.navigate().back();
+        String mainwindow = driver.getWindowHandle();
+        driver.switchTo().window(mainwindow);
+        
+        Thread.sleep(6000);
+        driver.findElement(By.id("twotabsearchtextbox")).clear();
+        driver.findElement(By.id("twotabsearchtextbox")).sendKeys("TV");
+        Thread.sleep(6000);
+        driver.findElement(By.id("nav-search-submit-button")).click();
+        Thread.sleep(6000);
+        driver.findElement(By.linkText("Samsung")).click();
+        System.out.println("Samsung Checkbox selected");
+        Thread.sleep(6000);
+        driver.findElement(By.linkText("Sony")).click();
+        System.out.println("Sony Checkbox selected");
+        Thread.sleep(6000);
+        driver.findElement(By.linkText("HDMI")).click();
+        System.out.println("HDMI Checkbox selected");
+        Thread.sleep(6000);
+        driver.findElement(By.partialLinkText("Sony 139 cm (55 inches) BRAVIA 2 4K Ultra HD")).click();
+        Thread.sleep(5000);
+        driver.findElement(By.linkText("With Exchange")).click();
+        System.out.println("With Exchange radio selected");
+        Thread.sleep(5000);
+        driver.quit();
+	}
+
+}
